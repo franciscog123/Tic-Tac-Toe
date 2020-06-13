@@ -9,7 +9,12 @@
 </head>
 <body>
     <h1>Tic-Tac-Toe</h1>
-    <div class="startScreen";>
+    <div class="startScreen" style="display:none";>
+        <div class="repoLink">
+            <a href="https://github.com/franciscog123/Tic-Tac-Toe"><p>Source Code</p>
+                <img border="0" alt="Source Code" src="images/GitHub-Mark.png" width="100" height="100">
+                </a></p>
+        </div>
         <div class="gameModeChoices">
             <h2>Choose your game mode: </h2>
             <form action="">
@@ -17,7 +22,36 @@
                 <button type="button" class="gameModeButtons" onclick="changeScreen()">Player VS Computer</button>
             </form>
         </div>
-        <div class="repoLink">
+    </div>
+
+    <div class="nameInputScreenTwoP" style="display: none";>
+        <div class="twoPlayerInputs">
+            <h2>Input Player Name(s):</h2>
+            <form  action="">
+                <label for="playerOneName">Player 1 name:</label>
+                <input type="text" id="playerOneName" name="playerOneName" value="Player 1"><br><br>
+                <label for="playerTwoName">Player 2 name:</label>
+                <input type="text" id="playerTwoName" name="playerOneName" value="Player 2"><br><br>
+                <input type="submit" value="Submit" class="nameSubmitBtn">
+            </form> 
+        </div>
+          <div class="repoLink repoLinkTwo">
+            <a href="https://github.com/franciscog123/Tic-Tac-Toe"><p>Source Code</p>
+                <img border="0" alt="Source Code" src="images/GitHub-Mark.png" width="100" height="100">
+                </a></p>
+        </div>
+    </div>
+
+    <div class="nameInputScreenOneP">
+        <div class="onePlayerInputs">
+            <h2>Input Player Name(s):</h2>
+            <form  action="">
+                <label for="playerOneName">Player 1 name:</label>
+                <input type="text" id="playerOneName" name="playerOneName" value="Player 1"><br><br>
+                <input type="submit" value="Submit" class="nameSubmitBtn">
+            </form> 
+        </div>
+          <div class="repoLink repoLinkThree">
             <a href="https://github.com/franciscog123/Tic-Tac-Toe"><p>Source Code</p>
                 <img border="0" alt="Source Code" src="images/GitHub-Mark.png" width="100" height="100">
                 </a></p>

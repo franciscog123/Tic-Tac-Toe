@@ -69,13 +69,8 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
     height: 80vh;
-}
-
-.repoLink{
-    position:absolute;
-    bottom:10px;
 }
 
 .repoLink:hover{transform: scale(1.1);}
@@ -85,6 +80,7 @@ body
     height: 50%;
     align-items: center;
     justify-content: center;
+    margin-top: 10%;
 }
 
 .gameModeButtons
@@ -106,4 +102,63 @@ body
     cursor: pointer;
     transform: scale(1.1);
 }
+
+.nameInputScreenTwoP
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.twoPlayerInputs
+{
+    margin-top: auto;
+}
+
+.repoLinkTwo
+{
+    margin-top: auto;;
+}
+
+.nameSubmitBtn
+{
+    color:#FFFFFF;
+    background-color: black;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding:0.35em 1.2em;
+}
+
+.nameSubmitBtn:hover
+{
+    color:#000000;
+    background-color: white;
+    border:0.1em solid black;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.nameInputScreenOneP
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.onePlayerInputs
+{
+    margin-top: auto;
+}
+
+.repoLinkThree
+{
+    margin-top:auto;
+}
+
 
