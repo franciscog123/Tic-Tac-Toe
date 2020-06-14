@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Tic-Tac-Toe</h1>
-    <div class="startScreen" style="display:none";>
+    <div class="startScreen">
         <div class="repoLink">
             <a href="https://github.com/franciscog123/Tic-Tac-Toe"><p>Source Code</p>
                 <img border="0" alt="Source Code" src="images/GitHub-Mark.png" width="100" height="100">
@@ -17,38 +17,38 @@
         </div>
         <div class="gameModeChoices">
             <h2>Choose your game mode: </h2>
-            <form action="">
-                <button type="button" class="gameModeButtons" onclick="changeScreen()">Player VS Player</button><br><br>
-                <button type="button" class="gameModeButtons" onclick="changeScreen()">Player VS Computer</button>
+            <form action="" onsubmit="return false">
+                <button type="button" class="gameModeButtons" onclick="Settings.loadTwoPlayerPrompts()">Player VS Player</button><br><br>
+                <button type="button" class="gameModeButtons" onclick="Settings.loadSinglePlayerPrompts()">Player VS Computer</button>
             </form>
         </div>
     </div>
 
-    <div class="nameInputScreenTwoP" style="display: none";>
+    <div class="nameInputScreenTwoP" style="display: none;">
         <div class="twoPlayerInputs">
             <h2>Input Player Name(s):</h2>
-            <form  action="">
-                <label for="playerOneName">Player 1 name:</label>
-                <input type="text" id="playerOneName" name="playerOneName" value="Player 1"><br><br>
-                <label for="playerTwoName">Player 2 name:</label>
-                <input type="text" id="playerTwoName" name="playerOneName" value="Player 2"><br><br>
-                <input type="submit" value="Submit" class="nameSubmitBtn">
+            <form  action="" onsubmit="return false">
+                <label for="multiPlayerOneName">Player 1 name:</label>
+                <input type="text" id="playerOneName" name="multiPlayerOneName" value="Player 1" required><br><br>
+                <label for="multiPlayerTwoName">Player 2 name:</label>
+                <input type="text" id="playerTwoName" name="multiPlayerTwoName" value="Player 2" required><br><br>
+                <input type="submit" value="Submit" class="nameSubmitBtn" onclick="submitNameInputs()">
             </form> 
         </div>
           <div class="repoLink repoLinkTwo">
             <a href="https://github.com/franciscog123/Tic-Tac-Toe"><p>Source Code</p>
                 <img border="0" alt="Source Code" src="images/GitHub-Mark.png" width="100" height="100">
                 </a></p>
-        </div>
+            </div>
     </div>
 
-    <div class="nameInputScreenOneP">
+    <div class="nameInputScreenOneP" style="display: none;">
         <div class="onePlayerInputs">
             <h2>Input Player Name(s):</h2>
-            <form  action="">
-                <label for="playerOneName">Player 1 name:</label>
-                <input type="text" id="playerOneName" name="playerOneName" value="Player 1"><br><br>
-                <input type="submit" value="Submit" class="nameSubmitBtn">
+            <form  action="" onsubmit="return false">
+                <label for="singlePlayerOneName">Player 1 name:</label>
+                <input type="text" id="playerOneName" name="singlePlayerOneName" value="Player 1" required><br><br>
+                <input type="submit" value="Submit" class="nameSubmitBtn" onclick="submitNameInputs()">
             </form> 
         </div>
           <div class="repoLink repoLinkThree">
@@ -70,7 +70,9 @@
         <div class="bottomRight cells">X</div>
     </div>
 </body>
-<script src="scripts/game.js"></script> 
 <script src="scripts/playerFactory.js"></script> 
-<script src="scripts/displayController.js"></script> 
+<script src="scripts/settingsController.js"></script>
+<script src="scripts/flowController.js"></script>
+<script src="scripts/displayController.js"></script>  
+<script src="scripts/game.js"></script> 
 </html>
