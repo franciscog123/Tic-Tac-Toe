@@ -1,31 +1,48 @@
+"use strict";
+
 const Settings = (function() {
 
     let _gameMode="";
+    let _playerOneName;
+    let _playerTwoName;
 
-    const _setGameMode = (mode) => {
+    const setGameMode = (mode) => {
         _gameMode=mode;
     }
 
     const getGameMode = () => {return _gameMode;}
 
-    const loadSinglePlayerPrompts = () => {
-        document.querySelector(".startScreen").setAttribute("style","display:none;");
-        document.querySelector(".nameInputScreenOneP").setAttribute("style","display:;");
-        _setGameMode("single");
+    const _setPlayerOneName = (name) => {
+        _playerOneName=name;
     }
 
-    const loadTwoPlayerPrompts = () => {
-        document.querySelector(".startScreen").setAttribute("style","display:none;");
-        document.querySelector(".nameInputScreenTwoP").setAttribute("style","display:;");
-        _setGameMode("multi");
+    const getPlayerOneName = () => {return _playerOneName;}
+
+    const _setPlayerTwoName = (name) => {
+        _playerTwoName=name;
     }
 
-    const loadGame = () => {
-        console.log("load game");
+    const getPlayerTwoName = () => {return _playerTwoName;}
+
+    const submitNameInputs = () =>
+    {
+        if(getGameMode()=="single")
+        {
+            _setPlayerOneName(document.querySelector("[name='singlePlayerOneName']").value);
+            Display.showBoard();
+            startGame();
+        }
+        else if(getGameMode()=="multi")
+        {
+            _setPlayerOneName(document.querySelector("[name='multiPlayerOneName']").value);
+            _setPlayerTwoName(document.querySelector("[name='multiPlayerTwoName']").value);
+            Display.showBoard();
+            startGame();
+        }
     }
 
     return {
-        getGameMode, loadSinglePlayerPrompts, loadTwoPlayerPrompts, loadGame
+         getGameMode, submitNameInputs, setGameMode, getPlayerOneName, getPlayerTwoName
     };
 
 })();
