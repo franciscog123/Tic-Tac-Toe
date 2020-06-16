@@ -18,8 +18,8 @@
         <div class="gameModeChoices">
             <h2>Choose your game mode: </h2>
             <form action="" onsubmit="return false">
-                <button type="button" class="gameModeButtons" onclick="Settings.loadTwoPlayerPrompts()">Player VS Player</button><br><br>
-                <button type="button" class="gameModeButtons" onclick="Settings.loadSinglePlayerPrompts()">Player VS Computer</button>
+                <button type="button" class="gameModeButtons" onclick="Display.loadTwoPlayerPrompts()">Player VS Player</button><br><br>
+                <button type="button" class="gameModeButtons" onclick="Display.loadSinglePlayerPrompts()">Player VS Computer</button>
             </form>
         </div>
     </div>
@@ -32,7 +32,7 @@
                 <input type="text" id="playerOneName" name="multiPlayerOneName" value="Player 1" required><br><br>
                 <label for="multiPlayerTwoName">Player 2 name:</label>
                 <input type="text" id="playerTwoName" name="multiPlayerTwoName" value="Player 2" required><br><br>
-                <input type="submit" value="Submit" class="nameSubmitBtn" onclick="submitNameInputs()">
+                <input type="submit" value="Submit" class="nameSubmitBtn" onclick="Settings.submitNameInputs()">
             </form> 
         </div>
           <div class="repoLink repoLinkTwo">
@@ -48,7 +48,7 @@
             <form  action="" onsubmit="return false">
                 <label for="singlePlayerOneName">Player 1 name:</label>
                 <input type="text" id="playerOneName" name="singlePlayerOneName" value="Player 1" required><br><br>
-                <input type="submit" value="Submit" class="nameSubmitBtn" onclick="submitNameInputs()">
+                <input type="submit" value="Submit" class="nameSubmitBtn" onclick="Settings.submitNameInputs()">
             </form> 
         </div>
           <div class="repoLink repoLinkThree">
@@ -58,21 +58,24 @@
         </div>
     </div>
 
-    <div class="boardContainer hidden">
-        <div class="topLeft cells">X</div>
-        <div class="topCenter cells">O</div>
-        <div class="topRight cells">X</div>
-        <div class="centerLeft cells">O</div>
-        <div class="center cells">X</div>
-        <div class="centerRight cells">O</div>
-        <div class="bottomLeft cells">X</div>
-        <div class="bottomCenter cells">O</div>
-        <div class="bottomRight cells">X</div>
+    <div class = "boardScreen" style="display: none;">
+        <div class="announcement">Let's Play!</div>
+        <div class="boardContainer">
+            <div class="topLeft cells"></div>
+            <div class="topCenter cells"></div>
+            <div class="topRight cells"></div>
+            <div class="centerLeft cells"></div>
+            <div class="center cells"></div>
+            <div class="centerRight cells"></div>
+            <div class="bottomLeft cells"></div>
+            <div class="bottomCenter cells"></div>
+            <div class="bottomRight cells"></div>
+        </div>
     </div>
 </body>
 <script src="scripts/playerFactory.js"></script> 
 <script src="scripts/settingsController.js"></script>
-<script src="scripts/flowController.js"></script>
+<script src="scripts/gameBoard.js"></script>
 <script src="scripts/displayController.js"></script>  
 <script src="scripts/game.js"></script> 
 </html>
