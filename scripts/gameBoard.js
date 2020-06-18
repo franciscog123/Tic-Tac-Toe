@@ -4,13 +4,11 @@ const GameBoard = (function () {
     
     let boardValuesArray = ['','','', '', '', '', '', '', ''];
     let divElementArray = Array.from(document.querySelectorAll(".cells"));
-    let _isGameOver; //boolean
+    let _isGameOver; 
     let _whosTurnItIs;
     let isVsComputer;
-
+    let isNewGame;
     let winningToken;
-
-    //scores? or players keep track?
 
     const setWhosTurnItIs = (player) => {
         _whosTurnItIs=player;
@@ -30,19 +28,27 @@ const GameBoard = (function () {
 
     const getWinningToken = () => {return winningToken;}
 
+    const setIsNewGame = (gameStatus) => {
+        isNewGame=gameStatus;
+    }
+
+    const getIsNewGame = () => {return isNewGame;}
+
     const evaluateBoard = () => {
 
         if(!_isSpaceLeft())
         {
             Display.announce.textContent=`Game Over! It's a draw!`;
+            Display.showNewGameBtn();
+            setIsNewGame(true);
         }
 
         //convert array of board values to a 2d array to make evaluating easier
         let twoDArray=arrayToTwoDArray(boardValuesArray);
 
-        /*
         if(_rowEval(twoDArray)==true)
         {
+            Display.makeBoardUnclickable();
             if(playerOne.getToken()==getWinningToken())
             {
                 Display.announce.textContent=`${playerOne.getName()} wins!`;
@@ -51,10 +57,13 @@ const GameBoard = (function () {
             {
                 Display.announce.textContent=`${playerTwo.getName()} wins!`;
             }
-        }*/
+            Display.showNewGameBtn();
+            setIsNewGame(true);
+        }
 
-        /*if(_colEval(twoDArray)==true)
+        if(_colEval(twoDArray)==true)
         {
+            Display.makeBoardUnclickable();
             if(playerOne.getToken()==getWinningToken())
             {
                 Display.announce.textContent=`${playerOne.getName()} wins!`;
@@ -63,10 +72,13 @@ const GameBoard = (function () {
             {
                 Display.announce.textContent=`${playerTwo.getName()} wins!`;
             }
-        }*/
+            setIsNewGame(true);
+            Display.showNewGameBtn();
+        }
 
         if(_diagEval(twoDArray)==true)
         {
+            Display.makeBoardUnclickable();
             if(playerOne.getToken()==getWinningToken())
             {
                 Display.announce.textContent=`${playerOne.getName()} wins!`;
@@ -75,9 +87,9 @@ const GameBoard = (function () {
             {
                 Display.announce.textContent=`${playerTwo.getName()} wins!`;
             }
+            setIsNewGame(true);
+            Display.showNewGameBtn();
         }
-
-
     }
 
     //returns true if there is still any open spaces remaining on board
@@ -124,6 +136,7 @@ const GameBoard = (function () {
         return isWinningRow;
     }
 
+    //returns true if there is a winning column
     const _colEval = (twoDRay) => {
         let isWinningColumn=true;
         for(let index=0; index <twoDRay.length; index++)
@@ -143,21 +156,31 @@ const GameBoard = (function () {
         return isWinningColumn;
     }
 
+    //returns true if either diagonal is a winning result
     const _diagEval = (twoDRay) => { 
         
         let isWinningDiag=true;
-        for(let i=0,k=1; k<twoDRay.length; k++)
+        let isWinningDiagTwo=true;
+
+        let bottomRow=twoDRay.length-1;
+        for(let i=0,k=1, x=twoDRay.length-2, y=1;/*y=twoDRay.length-2*/ y<twoDRay.length,x<=0,k<twoDRay.length; k++,x--,y++)
         {
+            //checks top left diagonal down to bottom right
             if(twoDRay[i][i]=="" || twoDRay[i][i]!=twoDRay[k][k])
                     isWinningDiag=false;
+
+            //check bottomLeft corner first then goes up to top right
+            if(twoDRay[bottomRow][0]==""||twoDRay[bottomRow][0]!=twoDRay[x][y])
+                isWinningDiagTwo=false;
         }
         setWinningToken(twoDRay[1][1]);
-        return isWinningDiag;
+        return (isWinningDiag||isWinningDiagTwo);
     }
 
     return {
         getWinningToken, boardValuesArray, divElementArray, 
-        getWhosTurnItIs, setWhosTurnItIs, getIsGameOver, setIsGameOver, evaluateBoard
+        getWhosTurnItIs, setWhosTurnItIs, getIsGameOver, setIsGameOver, evaluateBoard,
+        getIsNewGame, setIsNewGame
     };
 
 })();

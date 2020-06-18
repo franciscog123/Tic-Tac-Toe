@@ -3,19 +3,19 @@
 const Display = (() => {
     
     let announce=document.querySelector(".announcement");
+    let _newGameBtn=document.querySelector("#newGameBtn");
+    let _newGameBtnContainer=document.querySelector(".newGameBtnContainer");
+    let board=document.querySelector(".boardContainer");
+
+    const showNewGameBtn = () => {
+         _newGameBtnContainer.setAttribute("style","");
+    }
 
     const showBoard = () => {
         document.querySelector(".nameInputScreenOneP").setAttribute("style","display:none;");
         document.querySelector(".nameInputScreenTwoP").setAttribute("style","display:none;");
         document.querySelector(".boardScreen").setAttribute("style","");
     }
-
-    /*const renderArrayToBoard = () => {
-        for(let i=0; i<GameBoard.boardValuesArray.length; i++)
-        {
-            GameBoard.divElementArray[i].textContent=GameBoard.boardValuesArray[i];
-        }
-    }*/
 
     const loadSinglePlayerPrompts = () => {
         document.querySelector(".startScreen").setAttribute("style","display:none;");
@@ -29,10 +29,10 @@ const Display = (() => {
         Settings.setGameMode("multi");
     }
 
+    //adds event listeners to each board cell that control majority of the events fired after clicking the cell
     const addBoardListeners = () => {
-
-        GameBoard.divElementArray.forEach((cell, index) => cell.addEventListener('click', ()=>{
-            
+        GameBoard.divElementArray.forEach((cell, index) => cell.addEventListener('click', ()=>
+        {
             if(GameBoard.getWhosTurnItIs()=="p1"  && cell.textContent=="" && !GameBoard.getIsGameOver())
             {
                 cell.textContent="X";
@@ -49,12 +49,32 @@ const Display = (() => {
                 Display.announce.textContent=`It's ${playerOne.getName()}'s turn`;
                 GameBoard.evaluateBoard();
             }
-
         }));
     }
 
+    const makeBoardUnclickable = () => {
+        board.style.pointerEvents="none";
+    }
+
+    const clearBoard = () => {
+        board.style.pointerEvents=""; //make board clickable again
+        
+        //clear board
+        GameBoard.divElementArray.forEach((element, index) => {
+            element.textContent="";
+            GameBoard.boardValuesArray[index]="";
+        })
+
+        _newGameBtnContainer.setAttribute("style","display:none;");
+        announce.textContent=`It's ${playerOne.getName()}'s turn`;
+        GameBoard.setWhosTurnItIs("p1");
+    }
+
+    _newGameBtn.addEventListener("click",clearBoard);
+
     return {
-        showBoard, announce, loadSinglePlayerPrompts, loadTwoPlayerPrompts, addBoardListeners
+        showBoard, announce, loadSinglePlayerPrompts, loadTwoPlayerPrompts, 
+        addBoardListeners, clearBoard, showNewGameBtn, makeBoardUnclickable
     };
 
 })();

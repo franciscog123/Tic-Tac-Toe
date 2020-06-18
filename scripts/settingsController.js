@@ -24,6 +24,7 @@ const Settings = (function() {
 
     const getPlayerTwoName = () => {return _playerTwoName;}
 
+    //passes values from the screen where player(s) input their names and starts the game 
     const submitNameInputs = () =>
     {
         if(getGameMode()=="single")
