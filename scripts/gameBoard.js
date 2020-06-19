@@ -41,6 +41,7 @@ const GameBoard = (function () {
             Display.announce.textContent=`Game Over! It's a draw!`;
             Display.showNewGameBtn();
             setIsNewGame(true);
+            setIsGameOver(true);
         }
 
         //convert array of board values to a 2d array to make evaluating easier
@@ -59,6 +60,7 @@ const GameBoard = (function () {
             }
             Display.showNewGameBtn();
             setIsNewGame(true);
+            setIsGameOver(true);
         }
 
         if(_colEval(twoDArray)==true)
@@ -73,6 +75,7 @@ const GameBoard = (function () {
                 Display.announce.textContent=`${playerTwo.getName()} wins!`;
             }
             setIsNewGame(true);
+            setIsGameOver(true);
             Display.showNewGameBtn();
         }
 
@@ -88,6 +91,7 @@ const GameBoard = (function () {
                 Display.announce.textContent=`${playerTwo.getName()} wins!`;
             }
             setIsNewGame(true);
+            setIsGameOver(true);
             Display.showNewGameBtn();
         }
     }
@@ -163,7 +167,7 @@ const GameBoard = (function () {
         let isWinningDiagTwo=true;
 
         let bottomRow=twoDRay.length-1;
-        for(let i=0,k=1, x=twoDRay.length-2, y=1;/*y=twoDRay.length-2*/ y<twoDRay.length,x<=0,k<twoDRay.length; k++,x--,y++)
+        for(let i=0,k=1, x=twoDRay.length-2, y=1;y<twoDRay.length,x<=0,k<twoDRay.length; k++,x--,y++)
         {
             //checks top left diagonal down to bottom right
             if(twoDRay[i][i]=="" || twoDRay[i][i]!=twoDRay[k][k])
@@ -177,10 +181,35 @@ const GameBoard = (function () {
         return (isWinningDiag||isWinningDiagTwo);
     }
 
+    const makeRandomMove = () => {
+        //Algorithm: 
+        //1. get the indexes of empty spaces in div element array
+        //2. stick indexes of empty spaces in another array
+        //3. generate random index number for empty spaces array and use the value of that index as the value to place symbol at
+        
+        let emptySpaceIndexList = [];
+
+        divElementArray.forEach((element, index) => {
+            if(element.textContent=="")
+                emptySpaceIndexList.push(index);
+        });
+
+        if(emptySpaceIndexList.length != 0)
+        {
+            let rand= Math.floor((Math.random()*(emptySpaceIndexList.length)));
+            divElementArray[emptySpaceIndexList[rand]].textContent="O";
+            boardValuesArray[emptySpaceIndexList[rand]]="O";
+        }
+        else
+        {
+            console.log("No more moves left");
+        }
+    }
+
     return {
         getWinningToken, boardValuesArray, divElementArray, 
         getWhosTurnItIs, setWhosTurnItIs, getIsGameOver, setIsGameOver, evaluateBoard,
-        getIsNewGame, setIsNewGame
+        getIsNewGame, setIsNewGame, makeRandomMove
     };
 
 })();

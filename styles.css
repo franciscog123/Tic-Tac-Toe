@@ -183,4 +183,10 @@ body
     margin: 10px;
 }
 
+.symbol{
+    padding: 5px;
+    font-weight: bold;
+    color:red;
+}
+
 

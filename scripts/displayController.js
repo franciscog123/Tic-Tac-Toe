@@ -33,7 +33,7 @@ const Display = (() => {
     const addBoardListeners = () => {
         GameBoard.divElementArray.forEach((cell, index) => cell.addEventListener('click', ()=>
         {
-            if(GameBoard.getWhosTurnItIs()=="p1"  && cell.textContent=="" && !GameBoard.getIsGameOver())
+            if(GameBoard.getWhosTurnItIs()=="p1"  && cell.textContent=="" && !GameBoard.getIsGameOver() && Settings.getGameMode()=="multi")
             {
                 cell.textContent="X";
                 GameBoard.boardValuesArray[index]="X";
@@ -41,7 +41,18 @@ const Display = (() => {
                 Display.announce.textContent=`It's ${playerTwo.getName()}'s turn`;
                 GameBoard.evaluateBoard();
             }
-            else if (GameBoard.getWhosTurnItIs()=="p2" && cell.textContent=="" && !GameBoard.getIsGameOver())
+            else if(GameBoard.getWhosTurnItIs()=="p1" && cell.textContent=="" && !GameBoard.getIsGameOver() && Settings.getGameMode()=="single")
+            {
+                cell.textContent="X";
+                GameBoard.boardValuesArray[index]="X";
+                GameBoard.evaluateBoard();
+                if(!GameBoard.getIsGameOver())
+                {
+                    GameBoard.makeRandomMove();
+                    GameBoard.evaluateBoard();
+                }               
+            }
+            else if (GameBoard.getWhosTurnItIs()=="p2" && cell.textContent=="" && !GameBoard.getIsGameOver() && Settings.getGameMode()=="multi")
             {
                 cell.textContent="O";
                 GameBoard.boardValuesArray[index]="O";
@@ -57,6 +68,7 @@ const Display = (() => {
     }
 
     const clearBoard = () => {
+        GameBoard.setIsGameOver(false);
         board.style.pointerEvents=""; //make board clickable again
         
         //clear board

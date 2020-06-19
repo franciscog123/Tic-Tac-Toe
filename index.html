@@ -29,9 +29,13 @@
             <h2>Input Player Name(s):</h2>
             <form  action="" onsubmit="return false">
                 <label for="multiPlayerOneName">Player 1 name:</label>
-                <input type="text" id="playerOneName" name="multiPlayerOneName" value="Player 1" required><br><br>
+                <input type="text" id="playerOneName" name="multiPlayerOneName" value="Player 1" required>
+                <label class = "symbol" for="multiPlayerOneName">X</label>
+                <br><br>
                 <label for="multiPlayerTwoName">Player 2 name:</label>
-                <input type="text" id="playerTwoName" name="multiPlayerTwoName" value="Player 2" required><br><br>
+                <input type="text" id="playerTwoName" name="multiPlayerTwoName" value="Player 2" required>
+                <label for="multiPlayerTwoName" class="symbol">O</label>
+                <br><br>
                 <input type="submit" value="Submit" class="nameSubmitBtn" onclick="Settings.submitNameInputs()">
             </form> 
         </div>
@@ -47,7 +51,9 @@
             <h2>Input Player Name(s):</h2>
             <form  action="" onsubmit="return false">
                 <label for="singlePlayerOneName">Player 1 name:</label>
-                <input type="text" id="playerOneName" name="singlePlayerOneName" value="Player 1" required><br><br>
+                <input type="text" id="playerOneName" name="singlePlayerOneName" value="Player 1" required>
+                <label class="symbol" for="singlePlayerOneName">X</label>
+                <br><br>
                 <input type="submit" value="Submit" class="nameSubmitBtn" onclick="Settings.submitNameInputs()">
             </form> 
         </div>
@@ -61,7 +67,7 @@
     <div class = "boardScreen" style="display: none;">
         <div class="announcement">Let's Play!</div>
         <div class="newGameBtnContainer" style="display:none;">
-            <button id="newGameBtn" class="nameSubmitBtn" type="button">New Game</button> 
+            <button id="newGameBtn" class="nameSubmitBtn" type="button">Play Again</button> 
         </div>
         <div class="boardContainer">
             <div class="topLeft cells"></div>

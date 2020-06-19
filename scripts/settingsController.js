@@ -30,6 +30,7 @@ const Settings = (function() {
         if(getGameMode()=="single")
         {
             _setPlayerOneName(document.querySelector("[name='singlePlayerOneName']").value);
+            _setPlayerTwoName("CPU");
             Display.showBoard();
             startGame();
         }
